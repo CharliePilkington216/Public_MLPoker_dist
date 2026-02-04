@@ -1,0 +1,131 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- This code was given by deepseek-V3 under this prompt at 11/06/25
+    
+    give me a resource dictionary in xaml that 
+    1. sets all buttons to have white text, white border, bahnschrift font, 
+    with borderthickness, font size, background colour, margin, corner radius, 
+    click functionality to be decided when implemented to the wpf page, 
+    when the mouse hovers over the font size will increase by 1.2times and the button will not change colour or anything else 
+    and then return to the original font when mouse is no longer being hovered over. 
+    
+    2.sets all labels to have #FF395218 background foreground of goldenrod font family bahnschrift and font size decided on 
+    implementation on page with text alignment on the bottom left and no scroll bar of any kind or any interaction 
+    
+    3.all textboxes and password boxes to be 35x500 dimensions with bahnschrift font black font colour text alignment on the centre left 
+    and font size to be made on implementation
+    
+    clean up of code was needed afterwards and done by me
+    -->
+
+    <Style x:Key="Button" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="FontFamily" Value="Bahnschrift"/>
+
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Viewbox x:Name="contentScale" Stretch="None">
+                            <ContentPresenter x:Name="content"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                        </Viewbox>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="contentScale" 
+                                  Property="LayoutTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Label" TargetType="{x:Type Label}">
+        <Setter Property="Background" Value="#FF395218"/>
+        <Setter Property="Foreground" Value="Goldenrod"/>
+        <Setter Property="FontFamily" Value="Bahnschrift"/>
+        <Setter Property="FontSize" Value="12"/>
+
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      RecognizesAccessKey="True"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Width" Value="500"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="FontFamily" Value="Bahnschrift"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="12"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="border" 
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="PasswordBox" TargetType="{x:Type PasswordBox}">
+        <Setter Property="Width" Value="500"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="FontFamily" Value="Bahnschrift"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="PasswordChar" Value="*"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Border x:Name="border" 
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
